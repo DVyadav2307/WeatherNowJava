@@ -23,7 +23,8 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "WeatherNow_577c38d5",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml  -splash:\"C:/Users/DV yadav/Documents/Programming Files/Java Files/WeatherNow/src/images/weatherIcons/Partly-Cloudy-Day.gif\"",
+            
         }
     ]
 }

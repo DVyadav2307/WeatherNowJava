@@ -151,28 +151,29 @@ class WeatherData {
       // obtaining today hours forcast to fetch the nearest epoch forcast
       JSONArray todayHoursForcastArray = todayForcastJsonObject.getJSONArray("hours");
 
-      for(int i = 0; i <= 23; i++){
+      int nthHours = 0;
+      for(nthHours =0; nthHours <= 23; nthHours++){
          // finding just bigger  hoursJsonObject by matching next hour epoch
-         if( todayHoursForcastArray.getJSONObject(i).getLong("datetimeEpoch") > currentEpochTime){
+         if( todayHoursForcastArray.getJSONObject(nthHours).getLong("datetimeEpoch") > currentEpochTime){
 
             // obtaining differnce from cuurent epoch  from next hour epoch
-            long curentEpochTimeUpperCieling = todayHoursForcastArray.getJSONObject(i).getLong("datetimeEpoch") - currentEpochTime;
+            long curentEpochTimeUpperCieling = todayHoursForcastArray.getJSONObject(nthHours).getLong("datetimeEpoch") - currentEpochTime;
 
             // when current epoch is shorter then the shortest epoch from response
             // avoiding i = -1 situation
-            if( i ==0 ){
-               nearestHourForcastJsonObject  = todayHoursForcastArray.getJSONObject(i);      
+            if( nthHours ==0 ){
+               nearestHourForcastJsonObject  = todayHoursForcastArray.getJSONObject(nthHours);      
             }
             else{
                // obtaining differnt from cuurent epoch to just previous hour epoch
-               long cuurentEpochTimeLowerFloor = currentEpochTime - todayHoursForcastArray.getJSONObject(i-1).getLong("datetimeEpoch");
+               long cuurentEpochTimeLowerFloor = currentEpochTime - todayHoursForcastArray.getJSONObject(nthHours-1).getLong("datetimeEpoch");
                
                // finding nearest hour by camparing diff
                if(curentEpochTimeUpperCieling <= cuurentEpochTimeLowerFloor){
-                  nearestHourForcastJsonObject = todayHoursForcastArray.getJSONObject(i);
+                  nearestHourForcastJsonObject = todayHoursForcastArray.getJSONObject(nthHours);
                }
                else{
-                  nearestHourForcastJsonObject = todayHoursForcastArray.getJSONObject(i-1);
+                  nearestHourForcastJsonObject = todayHoursForcastArray.getJSONObject(nthHours-1);
                }
             }
 
@@ -181,6 +182,8 @@ class WeatherData {
          }
       }
 
+      // incase when current epoch is greater than last max avialable epoch stamp of 23:00
+      nearestHourForcastJsonObject = todayHoursForcastArray.getJSONObject(nthHours-1);
 
    }
 
@@ -201,9 +204,8 @@ class WeatherData {
       long searchedPlaceTimeInMinutes = UTCTimeInMinutes + (long)(completeForcastJsonObject.getDouble("tzoffset") * 60 );
 
       // obtaining HH : MM
-      long searchedPlaceTimeInHH = searchedPlaceTimeInMinutes / 60 ;
-      long searchedPlaceTimeInMM = searchedPlaceTimeInMinutes % 60;
-
+      long searchedPlaceTimeInHH = (long)Math.abs(searchedPlaceTimeInMinutes / 60) ;
+      long searchedPlaceTimeInMM = (long)Math.abs(searchedPlaceTimeInMinutes % 60) ;
       // ensuring 00:00 format
        String searcedPlaceTimeInHHString = ""+searchedPlaceTimeInHH;
        String searchedPlaceTimeInMMString = ""+searchedPlaceTimeInMM;

@@ -24,7 +24,7 @@ To install WeatherNow, you have two options:
 
 - Clone or download this repository from [GitHub](https://github.com/DVyadav2307/WeatherNowJava) and run the application with gradle. You need to obtain an API key from OpenWeatherMap and store it in a file named `api_key.txt` in the `resources` folder of your project. You can get an API key for free by signing up on their website:
 
-  - [TimelineWeatherAPI](^https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/^)
+  - [TimelineWeatherAPI](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
 
 - Download the executable files from the [installer](installer) directory and run the application with the appropriate script for your operating system. The API key is already included in the executable files.
 

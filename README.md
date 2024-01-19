@@ -46,10 +46,6 @@ To run WeatherNow, you can use one of the following methods:
 
 Once the application is running, you can enter the name of a location in the text field and press the enter key or the search button. The application will display the weather information for that location. You can also change the units by clicking on the Celsius or Fahrenheit buttons.
 
-## License
-
-WeatherNow is licensed under the MIT License. See the `LICENSE` file for more details.
-
 ## Contributing
 
 WeatherNow is an open source project and contributions are welcome. If you want to contribute, please follow these steps:
@@ -63,23 +59,14 @@ WeatherNow is an open source project and contributions are welcome. If you want 
 
 If you have any questions, suggestions, or feedback, you can contact me at:
 
-- Email: dvyadav2307@gmail.com
-- GitHub: [DVyadav2307](^4^)
+- Email: [divyanshuy858@gmail.com](mailto:divyanshuy858@gmail.com)
+- GitHub: [DVyadav2307](https://github.com/DVyadav2307)
 
 ## Acknowledgements
 
 I would like to thank the following sources for providing the resources and inspiration for this project:
 
-- [OpenWeatherMap](^2^) for the weather data and icons
-- [Unsplash](^5^) for the background images
-- [JavaFX] for the GUI framework
-- [Gson] for the JSON parsing library
-- [Introduction to Java Programming] by Y. Daniel Liang for the Java concepts and examples
-
-Source: Conversation with Bing, 19/1/2024
-(1) Intro To Java Programming, Comprehensive... by Y. Daniel Liang. https://www.amazon.in/Intro-Programming-Comprehensive-Version-Pearson/dp/935306578X.
-(2) Introduction to Java Programming : Liang, Y. Daniel: Amazon.in: Books. https://www.amazon.in/Introduction-Java-Programming-Student-Value/dp/0134671716.
-(3) Intro to Java Programming, Comprehensive Version Y. Daniel Liang .... https://www.pearsoned.co.in/web/books/9789353065782_Intro-to-Java-Programming-Comprehensive-Version_Y-Daniel-Liang.aspx.
-(4) Introduction to Java Programming, Brief Version - Pearson. https://www.pearson.com/en-us/subject-catalog/p/Liang-Introduction-to-Java-Programming-Brief-Version-11th-Edition/P200000003486/9780137504374.
-(5) Introduction to Java Programming : Liang, Y. Daniel: Amazon.in: Books. https://www.amazon.in/Introduction-Java-Programming-Student-Value/dp/0134671716.
-(6) Introduction to Java Programming - Google Books. https://books.google.com/books/about/Introduction_to_Java_Programming.html?id=OmC4ngEACAAJ.
+-[TimelineWeatherAPI](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/) for the weather data and icons
+- [JavaFX](https://gluonhq.com/products/javafx/) for the GUI framework
+- [Gson](https://github.com/google/gson) for the JSON parsing library
+- [Introduction to Java Programming]( https://www.amazon.in/Intro-Programming-Comprehensive-Version-Pearson/dp/935306578X.) by Y. Daniel Liang for the Java concepts and examples

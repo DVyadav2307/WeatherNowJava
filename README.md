@@ -2,7 +2,7 @@
 
 ![WeatherNow Logo](https://github.com/DVyadav2307/WeatherNowJava/blob/main/app/src/main/resources/io/github/dvyadav/weathernow/images/weatherIcons/AllWeather.gif)
 
-WeatherNow is a Java application that shows the current weather information for any location. You can enter the name of a city, country, or zip code, and the application will display the temperature, humidity, wind speed, and weather condition for that location. You can also switch between Celsius and Fahrenheit units.
+WeatherNow is a Java application that shows the current weather information for any location. You can enter the name of a city, country, or zip code, and the application will display the temperature, humidity, wind speed, and weather condition for that location.
 
 ## Features
 
@@ -26,7 +26,7 @@ To install WeatherNow, you have two options:
 
   - [OpenWeatherMap](^2^)
 
-- Download the executable files from the [installer](^3^) directory and run the application with the appropriate script for your operating system. The API key is already included in the executable files.
+- Download the executable files from the [installer](installer) directory and run the application with the appropriate script for your operating system. The API key is already included in the executable files.
 
 ## Usage
 

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -59,10 +60,14 @@ class WeatherData {
         //setting api link value
         String apiEndpointRequestLink = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 
+      //   gettting api key from text file
+        Scanner input = new Scanner(getClass().getResourceAsStream("api_key.txt"));
         //setting parameter for api link parameters
         String unitGroupParam  = "metric";
-        String keyParam = "WQCKJXL6BDNPMZMBGDVT74TW3";
+        String keyParam = input.next();
         String contentTypeParam = "json";
+      //   closing resource
+         input.close();
 
         //adding location string into api link
         StringBuilder apiEndpointRequestLinkStringBuilder = new StringBuilder(apiEndpointRequestLink);

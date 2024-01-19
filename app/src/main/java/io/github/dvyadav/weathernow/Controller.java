@@ -454,7 +454,11 @@ public void handleSearchImageEvent(MouseEvent e){
   public void sendLocationAndSetFronted(){
 
     // Api call request and backedn processes
-   weatherData  = new WeatherData( searchLocationTextField.getText());
+    try {
+        weatherData  = new WeatherData( searchLocationTextField.getText());
+    } catch (Exception e) {
+        System.out.println("API KEY ERROR IN \'api_key.txt\'");
+    }
 
     // setting placeNamelabel
     placeNameLabel.setText(weatherData.getPlaceName());

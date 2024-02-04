@@ -178,13 +178,13 @@
                   </Label>
                   <Group fx:id="searchFieldGroup" focusTraversable="true" layoutX="451.0" layoutY="14.0" onMouseEntered="#inceraseSearchFieldSize" onMouseExited="#decreaseSearchFieldSize">
                      <children>
-                        <TextField fx:id="searchLocationTextField" onKeyPressed="#handleSearchFeildEvent" prefHeight="36.0" prefWidth="261.0" promptText="Search for location" styleClass="searchFeild">
+                        <TextField fx:id="searchLocationTextField" onKeyPressed="#handleSearchAndEvent" prefHeight="36.0" prefWidth="261.0" promptText="Search for location" styleClass="searchFeild">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </TextField>
                         <Rectangle fx:id="searchIconRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="225.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="roundradiusSmallShape" width="36.0" />
-                        <ImageView fx:id="searchIconImageView" fitHeight="36.0" fitWidth="38.0" layoutX="225.0" onMouseClicked="#handleSearchImageEvent" onMouseEntered="#highlight" onMouseExited="#removeHighlight" pickOnBounds="true" preserveRatio="true" styleClass="SearchIcon">
+                        <ImageView fx:id="searchIconImageView" fitHeight="36.0" fitWidth="38.0" layoutX="225.0" onMouseClicked="#handleSearchAndEvent" onMouseEntered="#highlight" onMouseExited="#removeHighlight" pickOnBounds="true" preserveRatio="true" styleClass="SearchIcon">
                            <image>
                               <Image url="@images/icons/SearchIcon.png" />
                            </image>

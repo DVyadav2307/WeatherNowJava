@@ -3,6 +3,7 @@ package io.github.dvyadav.weathernow;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -435,20 +436,20 @@ public class Controller implements Initializable{
         day4titleLabel.setScaleY(1.0);
     }
 
-    
-//    handles the searchImageIconand calls api calling method
-public void handleSearchImageEvent(MouseEvent e){
-    if(!searchLocationTextField.getText().isEmpty())
-        sendLocationAndSetFronted();
-   }
-
-//    handles the searchTextField and calls api calling method
-   public void handleSearchFeildEvent(KeyEvent e){
-    if( e.getCode() == KeyCode.ENTER){
-        if(!searchLocationTextField.getText().isEmpty())
+    //    handle serach, manages both mouse and key events
+    public void handleSearchAndEvent(Event e){
+        /* 
+         * serach if text is not empty
+         * and avoid if the keypressed on text feild is other than ENTER
+         */
+        if(! searchLocationTextField.getText().isEmpty()){
+            // do not search if ENTER not pressed
+            if(e.getSource() == searchLocationTextField && ((KeyEvent)e).getCode() != KeyCode.ENTER){
+                return;
+            }
             sendLocationAndSetFronted();
+        }
     }
-   }
    
    // this method should not handle event , i should be called by event handling method
   public void sendLocationAndSetFronted(){

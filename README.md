@@ -7,22 +7,22 @@ WeatherNow is a Java application that shows the current weather information for 
 ## Features
 
 - Simple and user-friendly interface
-- Supports multiple locations and units
-- Uses OpenWeatherMap API to fetch weather data
+- Supports multiple locations and PIN Codes (Postal Codes)
+- Uses TimeLine API to fetch weather data
 - Displays weather icons and background images based on weather condition
 
 ## Requirements
 
-- Java 11 or higher
-- JavaFX 11 or higher
-- Gson 2.8.6 or higher
-- OpenWeatherMap API key
+- Java 21 or higher
+- JavaFX 21.0.2 or higher
+- Gradle 8.5 or higgher
+- TimeLine API key
 
 ## Installation
 
 To install WeatherNow, you have two options:
 
-- Clone or download this repository from [GitHub](https://github.com/DVyadav2307/WeatherNowJava) and run the application with gradle. You need to obtain an API key from OpenWeatherMap and store it in a file named `api_key.txt` in the `resources` folder of your project. You can get an API key for free by signing up on their website:
+- Clone or download this repository from [GitHub](https://github.com/DVyadav2307/WeatherNowJava) and run the application with gradle. You need to obtain an API key from TimeLine Weather API and save in your system as enviroment veraible with variable name "WEATHER_API_KEY". You can get an API key for free by signing up on their website:
 
   - [TimelineWeatherAPI](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
 
@@ -41,7 +41,7 @@ To run WeatherNow, you can use one of the following methods:
 - Use the executable files from the installer directory. You can run the application from the command line with the appropriate script for your operating system. For example, on Windows:
 
   ```bash
-  WeatherNow.bat
+  WeatherNow.exe
   ```
 
 Once the application is running, you can enter the name of a location in the text field and press the enter key or the search button. The application will display the weather information for that location. You can also change the units by clicking on the Celsius or Fahrenheit buttons.

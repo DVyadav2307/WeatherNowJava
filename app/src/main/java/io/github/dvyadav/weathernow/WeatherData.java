@@ -1,5 +1,6 @@
 package io.github.dvyadav.weathernow;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -13,8 +14,11 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.HttpStatus;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.net.URIBuilder;
 import org.json.JSONArray;
@@ -61,13 +65,10 @@ class WeatherData {
         String apiEndpointRequestLink = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 
       //   gettting api key from text file
-        Scanner input = new Scanner(getClass().getResourceAsStream("api_key.txt"));
         //setting parameter for api link parameters
         String unitGroupParam  = "metric";
-        String keyParam = input.next();
+        String keyParam =System.getenv("WEATHER_API_KEY");
         String contentTypeParam = "json";
-      //   closing resource
-         input.close();
 
         //adding location string into api link
         StringBuilder apiEndpointRequestLinkStringBuilder = new StringBuilder(apiEndpointRequestLink);
@@ -86,35 +87,10 @@ class WeatherData {
             // using GET method to send request by building the URI
             HttpGet get = new HttpGet(apiEndpointRequestLinkUriBuilder.build());
 
-            // sending request and fetching response
-            CloseableHttpResponse httpResponse = httpClient.execute(get);
-
-            // incase of bad response from server
-            if(httpResponse.getCode() != HttpStatus.SC_OK){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("Error Code: " + httpResponse.getCode());
-                alert.setContentText("Bad request From Server, Retry!");
-                alert.showAndWait();
-            }
-
-            // fetching entity from response
-            HttpEntity responseEntity = httpResponse.getEntity();
-            // incase of null entity
-            if(responseEntity == null){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("Empty Response");
-                alert.setContentText("Server sent an empty response.");
-                alert.showAndWait();
-            }
-
-            // extracting raw response for Json Processing
-            rawResposeForJson = EntityUtils.toString(responseEntity, Charset.forName("utf-8"));
-            // setting completeForcastObject from raw response string
+            // creating response handlerinstance for safely closing the request, check class block at the end of file
+            String rawResposeForJson = httpClient.execute(get, new MyRespomseHanlder() );
+         
             completeForcastJsonObject = new JSONObject(rawResposeForJson);
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -757,4 +733,28 @@ class WeatherData {
 
 
 
+}
+
+
+// class used to override the hanldeResponse method
+class MyRespomseHanlder implements HttpClientResponseHandler<String>{
+
+   @Override
+   public String handleResponse(ClassicHttpResponse response) throws HttpException, IOException {
+      int status = response.getCode();
+      // Extracting repose entity if netowrk and connection is correct
+      if (status >= 200 && status < 300) {
+         HttpEntity entity = response.getEntity();
+         if(entity == null) {
+            return "";
+         } else {
+            return EntityUtils.toString(entity);
+         }
+
+      } else {
+         //  incase of woring connection ( eithrer from client or server)
+         return ""+status;
+      }
+   }
+   
 }

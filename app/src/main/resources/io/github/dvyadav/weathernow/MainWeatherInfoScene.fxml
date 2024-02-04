@@ -191,6 +191,11 @@
                         </ImageView>
                      </children>
                   </Group>
+                  <ImageView fx:id="laodingIcon" fitHeight="36.0" fitWidth="36.0" layoutX="406.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@images/icons/loadingIcon.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

@@ -3,6 +3,7 @@ package io.github.dvyadav.weathernow;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -140,6 +141,9 @@ public class Controller implements Initializable{
 
     @FXML
     Group searchFieldGroup;
+
+    @FXML
+    ImageView laodingIcon;
 
     // thsi method will execute on loading the fmxl file to scene
     @Override
@@ -447,21 +451,38 @@ public class Controller implements Initializable{
             if(e.getSource() == searchLocationTextField && ((KeyEvent)e).getCode() != KeyCode.ENTER){
                 return;
             }
-            sendLocationAndSetFronted();
+
+            // this object manages list of task to perform concurrently
+            Task<Void> backendTask = new Task<Void>() {
+                // Perfomes this method to handle backend task without freezing UI
+                @Override
+               protected Void call(){
+                    sendLocation();
+                    return null;
+                }
+                // shows laoding inteface while becked task are running
+                @Override
+                protected void running(){
+                    placeNameLabel.setText("Loading...");
+                    laodingIcon.setVisible(true);
+                }
+                //  set the data to fronted after successfull fetching of weather data
+                @Override
+                protected void succeeded(){
+                    laodingIcon.setVisible(false);
+                    setFronted();
+                }
+
+            };
+
+            new Thread(backendTask).start();
         }
     }
-   
-   // this method should not handle event , i should be called by event handling method
-  public void sendLocationAndSetFronted(){
 
-    // Api call request and backedn processes
-    try {
-        weatherData  = new WeatherData( searchLocationTextField.getText());
-    } catch (Exception e) {
-        System.out.println("API KEY ERROR IN \'api_key.txt\'");
-    }
 
-    // setting placeNamelabel
+    // setting forntend 
+    public void setFronted(){
+        // setting placeNamelabel
     placeNameLabel.setText(weatherData.getPlaceName());
 
     // setting currettimeLabel
@@ -542,8 +563,17 @@ public class Controller implements Initializable{
     day4maxTempLabel.setText(weatherData.getDate4MaxTemp()+"\u00B0"+"C");
     day4minTempLabel.setText(weatherData.getDate4MinTemp()+"\u00B0"+"C");
 
+    }
+   
+   // this method should not handle event , i should be called by event handling method
+  public void sendLocation(){
 
-
+    // Api call request and backedn processes
+    try {
+        weatherData  = new WeatherData( searchLocationTextField.getText());
+    } catch (Exception e) {
+        System.out.println("API KEY ERROR IN \'api_key.txt\'");
+    }
 
   }
 }

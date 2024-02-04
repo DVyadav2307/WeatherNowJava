@@ -2,22 +2,18 @@ package io.github.dvyadav.weathernow;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
 
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpException;
-import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.net.URIBuilder;
@@ -88,7 +84,7 @@ class WeatherData {
             HttpGet get = new HttpGet(apiEndpointRequestLinkUriBuilder.build());
 
             // creating response handlerinstance for safely closing the request, check class block at the end of file
-            String rawResposeForJson = httpClient.execute(get, new MyRespomseHanlder() );
+            rawResposeForJson = httpClient.execute(get, new MyRespomseHanlder() );
          
             completeForcastJsonObject = new JSONObject(rawResposeForJson);
 

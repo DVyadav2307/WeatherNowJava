@@ -2,6 +2,8 @@ package io.github.dvyadav.weathernow;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javafx.concurrent.Task;
 import javafx.event.Event;
@@ -20,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Controller implements Initializable{
 
+    ExecutorService exe = Executors.newCachedThreadPool();
     WeatherData weatherData;
 
     @FXML
@@ -475,7 +478,10 @@ public class Controller implements Initializable{
 
             };
 
-            new Thread(backendTask).start();
+            // new Thread(backendTask).start();
+            exe.execute(backendTask);
+            // exe.shutdown();
+            
         }
     }
 
